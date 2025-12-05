@@ -17,16 +17,6 @@ const (
 	Pisces      = '\u2653' // Fische
 )
 
-func outputWithZodiacSign(p Person) {
-	var zodiacSign rune = '?'
-
-	// TODO: Assign proper value to zodiacSign using if/else branching.
-	// NOTE: The runes are defined above as constants.
-
-	fmt.Printf("%s %s, born on %02d.%02d.%04d, has the zodiac sign %c.\n",
-		p.FirstName, p.LastName, p.Day, p.Month, p.Year, zodiacSign)
-}
-
 type FullName struct {
 	FirstName string
 	LastName  string
@@ -40,6 +30,87 @@ type BirthDate struct {
 type Person struct {
 	FullName
 	BirthDate
+}
+
+func outputWithZodiacSign(p Person) {
+	var zodiacSign rune = '?'
+
+	if p.Month == 1 {
+		if p.Day <= 19 {
+			zodiacSign = Capricornus
+		} else {
+			zodiacSign = Aquarius
+		}
+	} else if p.Month == 2 {
+		if p.Day <= 18 {
+			zodiacSign = Aquarius
+		} else {
+			zodiacSign = Pisces
+		}
+	} else if p.Month == 3 {
+		if p.Day <= 20 {
+			zodiacSign = Pisces
+		} else {
+			zodiacSign = Aries
+		}
+	} else if p.Month == 4 {
+		if p.Day <= 19 {
+			zodiacSign = Aries
+		} else {
+			zodiacSign = Taurus
+		}
+	} else if p.Month == 5 {
+		if p.Day <= 20 {
+			zodiacSign = Taurus
+		} else {
+			zodiacSign = Gemini
+		}
+	} else if p.Month == 6 {
+		if p.Day <= 20 {
+			zodiacSign = Gemini
+		} else {
+			zodiacSign = Cancer
+		}
+	} else if p.Month == 7 {
+		if p.Day <= 22 {
+			zodiacSign = Cancer
+		} else {
+			zodiacSign = Leo
+		}
+	} else if p.Month == 8 {
+		if p.Day <= 22 {
+			zodiacSign = Leo
+		} else {
+			zodiacSign = Virgo
+		}
+	} else if p.Month == 9 {
+		if p.Day <= 22 {
+			zodiacSign = Virgo
+		} else {
+			zodiacSign = Libra
+		}
+	} else if p.Month == 10 {
+		if p.Day <= 22 {
+			zodiacSign = Libra
+		} else {
+			zodiacSign = Scorpius
+		}
+	} else if p.Month == 11 {
+		if p.Day <= 21 {
+			zodiacSign = Scorpius
+		} else {
+			zodiacSign = Sagittarius
+		}
+	} else if p.Month == 12 {
+		if p.Day <= 21 {
+			zodiacSign = Sagittarius
+		} else {
+			zodiacSign = Capricornus
+		}
+	}
+
+	fmt.Printf("%s %s, born on %02d.%02d.%04d, has the zodiac sign %c.\n",
+		p.FirstName, p.LastName, p.Day, p.Month, p.Year, zodiacSign)
 }
 
 func main() {
